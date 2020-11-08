@@ -1,0 +1,18 @@
++package main
+
+import "fmt"
+
+var(ch3 =make(chan int,50)
+	ch4     =make(chan int,50)
+)
+func main()  {
+	for i:=1;i<=100;i++  {switch i%2{
+	case 0:fmt.Printf("%d是偶数\n",i)
+	case 1:fmt.Printf("%d是奇数\n",i)
+
+
+
+	}
+
+	}
+}
