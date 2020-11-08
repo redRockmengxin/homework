@@ -1,0 +1,36 @@
++package main
+
+import (
+	"fmt"
+	"sync"
+)
+
+var (
+	myres = make(map[int]int, 20)
+	mu    sync.Mutex
+	ch1=make(chan int,20)
+	ch2=make(chan map[int]int,20)
+	re1 int
+	re2   map[int]int
+)
+
+func factorial(n int) {
+	var res = 1
+	for i := 1; i <= n; i++ {
+		res *= i
+	}
+	ch1<-res
+	myres[n] = res
+	re1=<-ch1
+}
+
+func main() {
+	for i := 1; i <= 20; i++ {
+		go factorial(i)
+	}
+	ch2<-myres
+	for i, v := range myres {
+		fmt.Printf("myres[%d] = %d\n", i, v)
+	}
+	re2=<-ch2
+}
