@@ -1,0 +1,62 @@
+package main
+
+import (
+	"fmt"
+	"os"
+)
+var client map[int]string
+
+func showAllst()  {
+	var client map[int]string = map[int]string{1: "aa", 2: "bb"}
+
+	for k,v:=range client{
+		fmt.Printf("id:%d,pw:%s",k,v)
+	}
+}
+func addst()  {
+	var(
+		id int
+	pw string
+	)
+fmt.Print("加用户序号：")
+fmt.Scanln(&id)
+fmt.Print("加密码：")
+fmt.Scanln(&pw)
+client[id]=pw
+}
+func dest()  {
+	var dc int
+fmt.Print("输入学生学号：")
+fmt.Scanln(&dc)
+delete(client,dc)
+}
+
+
+
+func main(){
+
+fmt.Println("欢迎光临")
+fmt.Println("1.查看用户"+
+                "2.新增用户" +
+	            "3.删除用户" +
+	             "4.退出")
+fmt.Println("你要干什么：")
+var choice int
+fmt.Scanln(&choice)
+fmt.Printf("%d\n",choice)
+	switch choice {
+	case 1:
+		showAllst()
+	case 2:
+		addst()
+	case 3:
+		dest()
+	case 4:
+		os.Exit(1)
+	}
+
+
+
+
+
+}
