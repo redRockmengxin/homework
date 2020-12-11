@@ -1,0 +1,25 @@
+package dao
+
+import (
+	"database/sql"
+	"fmt"
+)
+
+var DB *sql.DB
+
+func MysqlInit()*sql.DB{
+	db,err:=sql.Open("mysql","root:123456(127.0.0.1:3306)/messageBoard?charset=utf8mb4")
+    if err!=nil{
+    	fmt.Printf("mysql connect failed:%v",err)
+    	return  nil
+	}
+
+db.SetMaxIdleConns(1000)
+err=db.Ping()
+if err !=nil{
+	fmt.Printf("mysql connect failed:%v",err)
+	return  nil
+}
+DB=db
+return  DB
+}
